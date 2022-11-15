@@ -18,3 +18,5 @@ export type RequestError = {
   name: string,
   message: string,
 };
+
+export type GetAddressViaCEP = Partial<ViaCEPAddress> & {cidade: string}
