@@ -1,4 +1,3 @@
-import { request } from "@/utils/request";
 import { AddressEnrollment } from "@/protocols";
 import { getAddress } from "@/utils/cep-service";
 import { notFoundError } from "@/errors";
@@ -80,6 +79,10 @@ function getAddressForUpsert(address: CreateAddressParams) {
   };
 }
 
+async function getEnrollmentWithTicketByUserId(userId: number) {
+  return enrollmentRepository.findWithTicketByUserId(userId);
+}
+
 export type CreateOrUpdateEnrollmentWithAddress = CreateEnrollmentParams & {
   address: CreateAddressParams;
 };
@@ -87,7 +90,8 @@ export type CreateOrUpdateEnrollmentWithAddress = CreateEnrollmentParams & {
 const enrollmentsService = {
   getOneWithAddressByUserId,
   createOrUpdateEnrollmentWithAddress,
-  getAddressFromCEP
+  getAddressFromCEP,
+  getEnrollmentWithTicketByUserId,
 };
 
 export default enrollmentsService;
